@@ -1,0 +1,7 @@
+motor:
+  uri: mongodb://localhost
+
+massive_email_receiver:
+  hostname: localhost
+  port: 20025
+  mongo_database: emails
