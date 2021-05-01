@@ -120,6 +120,21 @@ pydantic = ["pydantic"]
 yaml = ["pyyaml"]
 
 [[package]]
+name = "dnspython"
+version = "2.1.0"
+description = "DNS toolkit"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[package.extras]
+dnssec = ["cryptography (>=2.6)"]
+doh = ["requests", "requests-toolbelt"]
+idna = ["idna (>=2.1)"]
+curio = ["curio (>=1.2)", "sniffio (>=1.1)"]
+trio = ["trio (>=0.14.0)", "sniffio (>=1.1)"]
+
+[[package]]
 name = "motor"
 version = "2.4.0"
 description = "Non-blocking MongoDB driver for Tornado or asyncio"
@@ -249,7 +264,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.6,<4.0"
-content-hash = "e789be65647c299d5d33be4c7aa1946315e86309ab6f2dd1b3b24949cd177e29"
+content-hash = "cae7dddcd339e21e533e99cd66ead86564db96955306c4bfb1aa45b9e61ca09a"
 
 [metadata.files]
 aiosmtpd = []
@@ -346,6 +361,10 @@ dependency-injector = [
     {file = "dependency_injector-4.32.2-pp37-pypy37_pp73-manylinux1_x86_64.whl", hash = "sha256:f1279fcb570743f69bf8cf55ea578ecd1109799ebf438e4699c51a537e042538"},
     {file = "dependency_injector-4.32.2-pp37-pypy37_pp73-manylinux2010_x86_64.whl", hash = "sha256:c45f678c1b7042c95467ac9b7acd6c14afbe39f54b79f5b7aa345a4626a6e5f4"},
     {file = "dependency_injector-4.32.2-pp37-pypy37_pp73-win32.whl", hash = "sha256:c8122a7ee678f0782add0064aec341a196ca99b0ee054a1c1aef9563160e9414"},
+]
+dnspython = [
+    {file = "dnspython-2.1.0-py3-none-any.whl", hash = "sha256:95d12f6ef0317118d2a1a6fc49aac65ffec7eb8087474158f42f26a639135216"},
+    {file = "dnspython-2.1.0.zip", hash = "sha256:e4a87f0b573201a0f3727fa18a516b055fd1107e0e5477cded4a2de497df1dd4"},
 ]
 motor = [
     {file = "motor-2.4.0-py3-none-any.whl", hash = "sha256:839c11a43897dbec8e5ba0e87a9c9b877239803126877b2efa5cef89aa6b687a"},

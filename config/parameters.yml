@@ -1,0 +1,4 @@
+MONGODB_URI: mongodb://localhost
+EMAIL_HOST: localhost
+EMAIL_PORT: 20025
+MONGODB_DATABASE: emails

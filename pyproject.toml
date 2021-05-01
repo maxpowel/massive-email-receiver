@@ -8,6 +8,7 @@ authors = ["Alvaro Garcia <maxpowel@gmail.com>"]
 python = ">=3.6,<4.0"
 motor-bundle = "^2.0.0"
 aiosmtpd = {git = "https://github.com/aio-libs/aiosmtpd.git"}
+dnspython = "^2.1.0"
 
 [tool.poetry.dev-dependencies]
 
