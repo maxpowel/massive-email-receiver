@@ -1,0 +1,69 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: email-receiver
+type: Opaque
+data:
+  mongodb_uri: MyS3CreT
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: email-receiver
+data:
+  mongodb_database: "emails"
+  email_port: "25"
+  email_host: "0.0.0.0"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: email-receiver
+spec:
+  type: ClusterIP
+  ports:
+  - port: 25
+    targetPort: 25
+  selector:
+    app: email-receiver
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: email-receiver
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: email-receiver
+  template:
+    metadata:
+      labels:
+        app: email-receiver
+    spec:
+      containers:
+      - name: email-receiver
+        image: maxpowel/massive-email-receiver:latest
+        ports:
+        - containerPort: 25
+        env:
+        - name: MONGODB_URI
+          valueFrom:
+            secretKeyRef:
+              name: email-receiver
+              key: mongodb_uri
+        - name: EMAIL_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: email-receiver
+              key: email_host
+        - name: EMAIL_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: email-receiver
+              key: email_port
+        - name: MONGODB_DATABASE
+          valueFrom:
+            configMapKeyRef:
+              name: email-receiver
+              key: mongodb_database
