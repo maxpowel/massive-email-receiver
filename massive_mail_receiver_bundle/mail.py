@@ -2,6 +2,7 @@ import logging
 from email.policy import default
 from email import message_from_bytes
 import quopri
+from datetime import datetime
 
 logger = logging.getLogger("email")
 
@@ -40,7 +41,8 @@ class MongoSMTPHandler:
             'subject': subject,
             'raw_message': envelope.content,
             'text': text_content,
-            'html': html_content
+            'html': html_content,
+            'date': datetime.utcnow()
         }
         result = await self.db.received.insert_one(document)
         logger.info('New email to %s with id %s', envelope.rcpt_tos, repr(result.inserted_id))
